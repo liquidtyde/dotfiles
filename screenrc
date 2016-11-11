@@ -1,0 +1,23 @@
+# Bind F11 and F12 (NOT F1 and F2) to previous and next screen window
+startup_message off
+nonblock on
+
+# scrollback buffer
+defscrollback 5000
+
+# 256 colors
+term 'screen-256-color'
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce on
+
+bind ^H prev
+bind "'" windowlist -b
+
+# the following two lines give a two-line status, with the current window highlighted
+hardstatus always
+hardstatus string '%{= kG}[%{G}%H%? %1`%?%{g}][%= %{= kw}%-w%{+b yk} %n*%t%?(%u)%? %{-}%+w %=%{g}][%{B}%m/%d %{W}%C%A%{g}]'
+
+windowlist title "Num Name%=Location Flags"
+windowlist string "%03n %t%=%h %f"
+shell -${SHELL}
